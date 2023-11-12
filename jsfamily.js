@@ -63,5 +63,33 @@ if (wong+yang==3&&pang==true) {console.log("王宥辰");}
 // document.title="我家";
 // console.log(document.title);
 // console.log(document.body);
-console.log(document.body.innerHTML);
-document.body.innerHTML="Hello DOM"
+// console.log(document.body.innerHTML);
+// document.body.innerHTML="Hello DOM"
+// window.alert("歡迎參觀")
+// console.log(window.screen.height,window.screen.width)
+// console.dir(window.document)
+
+let cat=document.querySelector("#hachiman");
+cat.style.color="red";
+function mycat(){
+                let changecolor=document.querySelector("#hachiman");
+                changecolor.style.color="green";
+                let hachi=document.createElement("img");
+                hachi.src="IMG_6237.jpeg"
+                hachi.id="backgroundimg"
+                document.body.appendChild(hachi)
+                var invisible=document.getElementById("color")
+                invisible.innerHTML="ol{list-style-type:cjk-ideographic;}ul li{padding: 1;margin:0;list-style-position: outside;}.cat{cursor: pointer;}"
+                }
+function yourcat(){
+                let changecolor=document.querySelector("#olet");
+                changecolor.style.color="blue";
+                let oulet=document.getElementById("backgroundimg");
+                oulet.src="IMG_6806.jpeg"
+                    }
+                    
+fetch().then(function(){
+    return Response.text();
+}).then(function(data){
+    console.log(data);
+});

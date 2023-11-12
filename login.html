@@ -4,14 +4,18 @@
 <head>
   <title>login</title>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel=stylesheet href="background.css">
+  <style>
+    label {
+        display: inline-block;
+        width: 80px; /* 或其他合適的寬度 */
+        text-align:center
+    }
+</style>
 </head>
 <body>
 <img id="backgroundimg" src="IMG_6237.jpeg" alt="Background Image">
-
-<br>
-<br>
-<br>
 <br>
   <label for="uid">員工編號</label>
   	<input for="uid" type="text" placeholder="UID">
@@ -19,9 +23,8 @@
   <label for="pwd">密碼</label>
   	<input for="pwd" type="password" placeholder="password">
   <br>
-  <button type="submit">送出</button>
-  <button onclick="location.href='signup.html'">註冊</button>
-
+  <button style="width:100px;background-color:gold;color:black" type="submit">送出</button>
+  <button style="width:100px;background-color:black;color:white" onclick="window.location.href='signup.html'">註冊</button>
 </body>
 
 </html>
