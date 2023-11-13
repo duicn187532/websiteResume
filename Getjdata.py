@@ -20,7 +20,7 @@ def Get(url):
     return Sdata
 
 
-def round():
+def run():
     for offset in range(0,121, 30):
         url1="https://tw.stock.yahoo.com/class-quote?sectorId=41&exchange=TAI"
         rid_value =Getrid.getrid(url1)
@@ -31,7 +31,9 @@ def round():
         
         with open("stock" + str(int(offset/30)) + ".json","w",encoding="utf-8")as file:
             file.write(str(Get(nurl))) 
-round()
+
+if __name__=="__main__":
+    run()
 # round()
 
 # for TAIIds in TAIId:
