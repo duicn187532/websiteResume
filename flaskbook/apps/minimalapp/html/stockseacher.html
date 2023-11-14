@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head>
+    <title>股價網站</title>
+    <meta charset="utf-8">
+    <script src="{{url_for('static',filename='pystock1.js')}}"></script>
+  </head>
+  <body>
+  <ul><!--用超連結帶出分類或是用js抓出分類-->
+  	<li ><a style="cursor: pointer;color:green" onclick="load()" onmouseover="changeColor(this)" onmouseout="resetColor(this)">電子零組</a></li>
+    <li ><a style="cursor: pointer;color:green" onclick="load()" onmouseover="changeColor(this)" onmouseout="resetColor(this)">水泥</a></li>
+  </ul>
+    <!-- <script src="pystock1.js"></script> -->
+  	<div id="space">
+    	<input style="border-radius: 4px" type="search" id="searchInput" placeholder="輸入關鍵字">
+    	<button id="searchButton" style="border-radius: 4px;">搜索</button>
+  	</div>
+  </body>
+</html>

@@ -1,6 +1,8 @@
 from flask import Flask
 from flask import request
 from flask import render_template
+from flask import redirect
+import moudule.Getjdata as Getjdata
 app= Flask(
     __name__,
     static_folder="stop", #靜態檔案資料夾的名稱
@@ -36,8 +38,15 @@ def getData():
 
 @app.route("/getSun")
 def getSun():
-    data=request.args.get("max",None)
-    return data
+
+    maxnum=request.args.get("max",100)
+    maxnum=int(maxnum)
+    minnum=request.args.get("min",1)
+    minnum=int(minnum)
+    result=0
+    for i in range(minnum,maxnum+1):
+        result+=i
+    return "總和"+str(result)
 
 @app.route("/login")
 def login():   
@@ -47,6 +56,22 @@ def login():
 def signup():   
     return render_template("signup.html")
 
+@app.route("/back")
+def backlog():
+    return redirect("/login")
+
+@app.route("/stock")
+def stock():
+    return render_template("stockseacher.html")
+
+@app.route("/json<int:n>")#11/14 json格式從yahoo股市API取得後轉換成文字檔寫在這個路由中
+def jsondata(n):
+    Sdata=Getjdata.run(n) 
+    return Sdata #將此檔案用getjs.js帶入到TAI1中
+
+@app.route("/stock1")
+def stock1():
+    return render_template("TAI1.html")
 
 if __name__=="__main__":
     app.run(debug=True,port=3000)
