@@ -1,5 +1,5 @@
 function getData(xy){
-    let x="stock"+xy+".json";
+    let x="/json"+xy;
     fetch(x).then(function(response){
       return response.json();}).then(function(data){
       let ans=document.querySelector("#an");
@@ -9,13 +9,25 @@ function getData(xy){
     }})
     }
 let currentIndex = 0;
-document.addEventListener("wheel",function(event){
-    if(event.deltaY>0,currentIndex<=5){
+let startY, endY;
+
+document.addEventListener("wheel", function(event) {
+    if (event.deltaY > 0 && currentIndex <= 5) {
         getData(currentIndex);
         currentIndex++;
     }
-})
-// function nextFile() {
-// getData(currentIndex);
-// currentIndex++; 
-// }
+});
+
+document.addEventListener("touchstart", function(event) {
+    startY = event.touches[0].clientY;
+}, false);
+
+document.addEventListener("touchend", function(event) {
+    endY = event.changedTouches[0].clientY;
+
+    // 檢查滑動方向
+    if (startY > endY && currentIndex <= 5) {
+        getData(currentIndex);
+        currentIndex++;
+    }
+}, false);
