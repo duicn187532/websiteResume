@@ -1,2 +1,2 @@
-#建立各種網站作品
-股價網站在Flaskbook/apps裡
+# 建立各種網站作品
+# 股價網站在flaskbook/minimalapps/apps/app.py
