@@ -64,15 +64,19 @@ def backlog():
 def stock():
     return render_template("stockseacher.html")
 
-@app.route("/json<int:n>")#11/14 json格式從yahoo股市API取得後轉換成文字檔寫在這個路由中
-def jsondata(n):
-    Sdata=Getjdata.run(n) 
-    return Sdata #將此檔案用getjs.js帶入到TAI1中
-
-@app.route("/stock1")
+@app.route("/TAI1")
 def stock1():
     return render_template("TAI1.html")
 
+@app.route("/json")#11/14 json格式從yahoo股市API取得後轉換成文字檔寫在這個路由中
+def jsondata():
+    batch=request.args.get("batch")
+    batch=int(batch)
+    sect=request.args.get("sectid")
+    sect=int(sect)
+    Sdata=Getjdata.run(batch,sect)
+    return Sdata #將此檔案用getjs.js帶入到TAI1中
+
 if __name__=="__main__":
-    app.run(debug=True,port=3000)
+    app.run(use_reloader=False,debug=True)
 
