@@ -10,7 +10,7 @@ function getData(xy,sect){
             let ans=document.querySelector("#an");
             for (let i=0;i<data.data.list.length;i++){
             let result=data.data.list[i];
-            ans.innerHTML+="<li><div class='price' style=''><span>"+result.symbol+"</span>"+"<span>"+result.symbolName+"</span>"+"<span>"+result.price+"</span>"+"<span>"+result.change+"</span>"+"<span>"+result.regularMarketPreviousClose+"</span>"+"</div></li>";
+            ans.innerHTML+="<div class='price' style=''><span>"+result.symbol+"</span>"+"<span>"+result.symbolName+"</span>"+"<span>"+result.price+"</span>"+"<span>"+result.change+"</span>"+"<span>"+result.regularMarketPreviousClose+"</span>"+"</div>";
             resolve();
             }})
             })}
@@ -21,8 +21,9 @@ function load(cate){
     sect=cate;
     let frame = document.querySelector("#space");
     let iframe = document.createElement('iframe');
-    iframe.width = '720';
-    iframe.height = '600';
+    iframe.style.flex=3;
+    iframe.style.width = '100%';
+    iframe.height = '400';
     iframe.src = '/TAI1';
     frame.innerHTML = '';
     frame.appendChild(iframe);
