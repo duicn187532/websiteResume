@@ -8,8 +8,10 @@
       .container{display: flex;}
       .menubox{min-width: 140px;max-height: 407px;overflow-y: auto;}
     </style>
+    <link rel=stylesheet href="{{url_for('static',filename='background.css')}}">
   </head>
   <body>
+    <img id="backgroundimg" src="{{url_for('static',filename='IMG_6237.jpeg')}}" alt="Background Image">
     <h1 style="text-align: center;">產業分類股價行情</h1>
   <div>
   <div style="display: flex;">

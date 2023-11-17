@@ -13,7 +13,7 @@ app= Flask(
 
 @app.route("/")
 def index():
-    return "Hello, Flask"
+    return "在url後方輸入stock進入股價網站"
 
 @app.route("/hello/<name>",methods=["GET","POST"],endpoint="hello-endpoint")#也可以改成get
 def hello(username):
