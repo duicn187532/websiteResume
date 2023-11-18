@@ -6,18 +6,20 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel=stylesheet href="{{url_for('static',filename='background.css')}}">
+  <link rel=stylesheet href="{{url_for('static',filename='form.css')}}">
   <style>
     label {
         display: inline-block;
         width: 80px; /* 或其他合適的寬度 */
-        text-align:center
+        text-align:center;
     }
+    
 </style>
 </head>
-<body>
+<body style="display: flex;">
 <img id="backgroundimg" src="{{url_for('static',filename='IMG_6237.jpeg')}}" alt="Background Image">
 <br>
-  <form>
+  <form style="flex:1" method="post" action="/loginin">
       <label for="uid">員工編號</label>
         <input for="uid" name="enum" type="text" placeholder="UID">
       <br>

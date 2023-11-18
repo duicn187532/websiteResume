@@ -17,9 +17,12 @@
     <script></script>
 </head>
 <body>
+{% for message in get_flashed_messages() %}
+        <div style="color: red;">{{ message }}</div>
+        {% endfor %}
 	<script src="pwdcheck.js"></script>
     <img id="backgroundimg" src="{{url_for('static',filename='IMG_6237.jpeg')}}" alt="Background Image">
-    <form>
+    <form method="post" action="/signupcheck">
         <fieldset>
             <legend style="text-align: center;">建立員工資料</legend>
             <p>
@@ -36,11 +39,11 @@
             </p>
             <p>
                 <label for="sex">性別</label>
-                <input type="radio" name="sex" value="man">
+                <input type="radio" name="sex" value="男">
                 <label for="man">男</label>
-                <input type="radio" name="sex" value="woman">
+                <input type="radio" name="sex" value="女">
                 <label for="woman">女</label>
-                <input type="radio" name="sex" value="other">
+                <input type="radio" name="sex" value="其他">
                 <label for="woman">其他</label>            
             </p>
             <p>
@@ -57,16 +60,16 @@
             </p>
             <p>
             <label for="license">證照</label>
-            <input type="checkbox" name="C1" value="V1">
-            <label for="license">html</label>
-            <input type="checkbox" name="C1" value="V1">
-            <label for="license">css</label>
-            <input type="checkbox" name="C1" value="V1">
-            <label for="license">js</label>
+            <input type="checkbox" name="licenses[]" value="HTML">
+            <label for="license">HTML</label>
+            <input type="checkbox" name="licenses[]" value="CSS">
+            <label for="license">CSS</label>
+            <input type="checkbox" name="licenses[]" value="JS">
+            <label for="license">JS</label>
             </p>
             <p>
             <label for="introduction">自我介紹</label>
-            <input type="textarea" maxlength="500" size="50" style="height:50px">
+            <input type="textarea" maxlength="500" size="50" style="height:50px" name="intro">
             </p>
             <p>
             <button type="submit">送出</button>

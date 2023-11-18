@@ -1,6 +1,6 @@
 from flask import Flask
 from flask import request
-from flask import render_template
+from flask import render_template,render_template_string,flash,url_for
 from flask import redirect
 import moudule.Getjdata as Getjdata
 app= Flask(
@@ -10,10 +10,11 @@ app= Flask(
     template_folder="html"
 
     )
+app.secret_key = 'some_secret_key'
 
 @app.route("/")
 def index():
-    return "在url後方輸入stock進入股價網站"
+    return render_template("index.html")
 
 @app.route("/hello/<name>",methods=["GET","POST"],endpoint="hello-endpoint")#也可以改成get
 def hello(username):
@@ -52,9 +53,54 @@ def getSun():
 def login():   
     return render_template("login.html")
 
+@app.route("/loginin",methods=['POST'])
+def loginside():
+    enum=request.form['enum']
+    pwd=request.form['pwd']
+    if enum=="admin" and pwd=="pass":
+       return redirect("/loginok")
+    else:
+        return "登入失敗" 
+    
+@app.route("/loginok")
+def loginok():
+    html_content = """""
+    <html>
+    <body>
+        <div style="text-align:center;color:blue;font-size:140%">登入成功，即將跳轉...</div>
+        <script>
+            setTimeout(function() {
+                window.location.href = '/';
+            }, 2000); // 延迟时间为 1000 毫秒(1 秒)
+        </script>
+    </body>
+    </html>
+    """
+    return render_template_string(html_content)
+
+        
+
 @app.route("/signup")
 def signup():   
     return render_template("signup.html")
+
+@app.route("/signupcheck",methods=['POST'])
+def signupcheck():
+    uname=request.form.get("uname")
+    enum=request.form.get("enum")
+    pwd=request.form.get("pwd")
+    sex=request.form.get("sex")
+    email=request.form.get("email")
+    email2=request.form.get("email2")
+    bir=request.form.get("bir")
+    licenses=request.form.getlist("licenses[]")
+    intro=request.form.get("intro")
+    if not all([uname, enum, pwd, sex, email, bir, intro]):
+        flash("有字段是必填的，請確保填寫完畢。")
+        return redirect("/signup")
+    return render_template("signupcheck.html",uname=uname,
+    enum=enum,pwd=pwd,sex=sex,email=email,email2=email2,bir=bir,licenses=licenses
+    ,intro=intro)   
 
 @app.route("/back")
 def backlog():
