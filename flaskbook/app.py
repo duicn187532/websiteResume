@@ -1,14 +1,14 @@
 from flask import Flask
 from flask import request
-from flask import render_template,render_template_string,flash,url_for
-from flask import redirect
+from flask import render_template,render_template_string,flash,url_for,jsonify
+from flask import redirect,session
 import moudule.Getjdata as Getjdata
+import mongo as mongo
 app= Flask(
     __name__,
     static_folder="stop", #靜態檔案資料夾的名稱
     static_url_path="/stop", #靜態檔案對應的網址路徑
     template_folder="html"
-
     )
 app.secret_key = 'some_secret_key'
 
@@ -39,7 +39,6 @@ def getData():
 
 @app.route("/getSun")
 def getSun():
-
     maxnum=request.args.get("max",100)
     maxnum=int(maxnum)
     minnum=request.args.get("min",1)
@@ -57,17 +56,26 @@ def login():
 def loginside():
     enum=request.form['enum']
     pwd=request.form['pwd']
+    session["username"]=enum
     if enum=="admin" and pwd=="pass":
-       return redirect("/loginok")
+       return redirect("/backendcontrol")
     else:
-        return "登入失敗" 
-    
+        return redirect("/loginok")
+
+@app.route("/backendcontrol")
+def control():
+    return render_template("systemcall.html")
+
 @app.route("/loginok")
 def loginok():
-    html_content = """""
+    username=session["username"]
+    html_content = """
     <html>
     <body>
-        <div style="text-align:center;color:blue;font-size:140%">登入成功，即將跳轉...</div>
+        <div style="text-align:center;color:blue;font-size:140%">登入成功，即將跳轉...
+        <br>
+        {{ username }}你好
+        </div>
         <script>
             setTimeout(function() {
                 window.location.href = '/';
@@ -76,31 +84,33 @@ def loginok():
     </body>
     </html>
     """
-    return render_template_string(html_content)
-
-        
-
+    return render_template_string(html_content,username=username)
 @app.route("/signup")
 def signup():   
     return render_template("signup.html")
 
 @app.route("/signupcheck",methods=['POST'])
 def signupcheck():
-    uname=request.form.get("uname")
-    enum=request.form.get("enum")
-    pwd=request.form.get("pwd")
-    sex=request.form.get("sex")
-    email=request.form.get("email")
-    email2=request.form.get("email2")
-    bir=request.form.get("bir")
-    licenses=request.form.getlist("licenses[]")
-    intro=request.form.get("intro")
-    if not all([uname, enum, pwd, sex, email, bir, intro]):
+    dataform={
+    'uname':request.form.get("uname"),
+    'enum':request.form.get("enum"),
+    'pwd':request.form.get("pwd"),
+    'sex':request.form.get("sex"),
+    'email':request.form.get("email"),
+    'email2':request.form.get("email2"),
+    'bir':request.form.get("bir"),
+    'licenses':request.form.getlist("licenses[]"),
+    'intro':request.form.get("intro")}
+    session.update(dataform)
+    if not all([dataform['uname'], dataform['enum'], dataform['pwd'], dataform['sex'], dataform['email'], dataform['bir'], dataform['intro']]):
         flash("有字段是必填的，請確保填寫完畢。")
         return redirect("/signup")
-    return render_template("signupcheck.html",uname=uname,
-    enum=enum,pwd=pwd,sex=sex,email=email,email2=email2,bir=bir,licenses=licenses
-    ,intro=intro)   
+    return render_template("signupcheck.html",**dataform)
+
+@app.route("/signupdone")
+def signdone():
+    mongo.insertdata(session['uname'],session['enum'],session['pwd'],session['sex'],session['email'],session['email2'],session['bir'],session['licenses'])
+    return  "hello"+ session['uname']
 
 @app.route("/back")
 def backlog():
@@ -125,4 +135,3 @@ def jsondata():
 
 if __name__=="__main__":
     app.run(use_reloader=False,debug=True)
-
