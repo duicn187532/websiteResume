@@ -2,5 +2,5 @@ Flask
 bs4
 pymongo
 bson
-urllib.request
+urllib
 gunicorn
