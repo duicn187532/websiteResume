@@ -1,3 +1,0 @@
-import stockchaser
-
-stockchaser.getCompanyPrice()

@@ -1,4 +1,0 @@
-# websiteResume
-架設網站設計我的履歷
-stocksearcher.html是一個股價網站，目前已有初步AJAX架構
-資料夾flaskbook裡存放flask作品，未來將會把前面所做的html放進這個框架中使用，增加應用多元性
