@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>員工註冊</title>
+    <style>
+    #backgroundimg{ position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    z-index: -1;
+                    opacity: 50%;}
+    </style>
+    <script></script>
+</head>
+<body>
+{% for message in get_flashed_messages() %}
+        <div style="color: red;">{{ message }}</div>
+        {% endfor %}
+	<script src="pwdcheck.js"></script>
+    <img id="backgroundimg" src="{{url_for('static',filename='IMG_6237.jpeg')}}" alt="Background Image">
+    <form method="post" action="/signupcheck">
+        <fieldset>
+            <legend style="text-align: center;">建立員工資料</legend>
+            <p>
+                <label for="name">姓名</label>
+                <input type="text" name="uname" placeholder="請輸入姓名">
+            </p>
+            <p>
+                <label for="uid">員工編號</label>
+                <input type="text" name="enum" placeholder="請輸入員工編號">
+            </p>
+            <p>
+                <label for="pwd">密碼</label>
+                <input type="password" name="pwd" placeholder="請輸入密碼" minlength="8" maxlength="16">
+            </p>
+            <p>
+                <label for="sex">性別</label>
+                <input type="radio" name="sex" value="男">
+                <label for="man">男</label>
+                <input type="radio" name="sex" value="女">
+                <label for="woman">女</label>
+                <input type="radio" name="sex" value="其他">
+                <label for="woman">其他</label>            
+            </p>
+            <p>
+                <label for="email">公司電子信箱</label>
+                <input type="text" name="email" >@mornimgking.com.tw
+            </p>
+            <p>
+                <label for="email2">備用電子信箱</label>
+                <input type="email" name="email2" >
+            </p>
+            <p>
+                <label for="bir">生日(西元年/月/日)</label>
+                <input type="date" name="bir">
+            </p>
+            <p>
+            <label for="license">證照</label>
+            <input type="checkbox" name="licenses[]" value="HTML">
+            <label for="license">HTML</label>
+            <input type="checkbox" name="licenses[]" value="CSS">
+            <label for="license">CSS</label>
+            <input type="checkbox" name="licenses[]" value="JS">
+            <label for="license">JS</label>
+            </p>
+            <p>
+            <label for="introduction">自我介紹</label>
+            <input type="textarea" maxlength="500" size="50" style="height:50px" name="intro">
+            </p>
+            <p>
+            <button type="submit">送出</button>
+            <button type="reset">重設</button>
+            <button type="button" onclick="window.location.href='/back'">已有帳號</button>
+            </p>
+        </fieldset>
+    </form>
+</body>
+</html>

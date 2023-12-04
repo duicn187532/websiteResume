@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>歡迎首頁</title>
+</head>
+<style>
+    td{
+        border: 1px solid black;
+        border-collapse:collapse;
+        text-align: center;
+        font-size: 120%;
+    }
+    table{
+        border-collapse: co;
+        width:100vw;
+        padding: 1%;
+        height: 10%;
+        }
+    tr{
+        background-color: aqua;
+    }
+</style>
+<body style="display: block;">
+    <table>
+        <caption>我的作品表格</caption>
+        <thead>
+        <tr>
+            <td ></td>
+            <td>2023</td>
+            <td>2024</td>
+            <td>2025</td>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>app</td>
+                <td><a href="{{url_for('stock')}}" target="_blank" rel="noopener noreferrer">股票爬蟲</a></td>
+                <td><a href="#" target="_blank" rel="noopener noreferrer">email</a></td>
+                <td><a href="#" target="_blank" rel="noopener noreferrer">資料分析</a></td>
+            </tr>
+            <tr>
+                <td>遊戲</td>
+                <td><a href="#" target="_blank" rel="noopener noreferrer">RPG</a></td>
+                <td><a href="#" target="_blank" rel="noopener noreferrer">消消樂</a></td>
+                <td><a href="#" target="_blank" rel="noopener noreferrer">投資模擬</a></td>
+            </tr>
+            <tr>
+                <td>形象網站</td>
+                <td><a href="#" target="_blank" rel="noopener noreferrer">科技業</a></td>
+                <td><a href="#" target="_blank" rel="noopener noreferrer">電商網站</a></td>
+                <td><a href="{{url_for('login')}}" target="_blank" rel="noopener noreferrer">員工內網</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <h1>形象影片</h1>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/GiwUzeuzkdE?si=0n5P5UgLsfqc9A6h" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>    
+</body>
+</html>

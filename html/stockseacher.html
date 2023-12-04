@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <title>股價網站</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="{{url_for('static',filename='getj.js')}}"></script>
+    <style>
+      .container{display: flex;}
+      .menubox{min-width: 140px;max-height: 407px;overflow-y: auto;background-color: rgba(222, 184, 135, 0.511);}
+    </style>
+    <link rel=stylesheet href="{{url_for('static',filename='background.css')}}">
+  </head>
+  <body>
+    <img id="backgroundimg" src="{{url_for('static',filename='IMG_6237.jpeg')}}" alt="Background Image">
+    <h1 style="text-align: center;">產業分類股價行情</h1>
+  <div>
+  <div style="display: flex;">
+    <div class="menubox" >
+    <ul><!--用超連結帶出分類或是用js抓出分類-->
+      <li ><a style="cursor: pointer;color:green" onclick="load(1)" onmouseover="changeColor(this)" onmouseout="resetColor(this)">水泥</a></li>
+      <li ><a style="cursor: pointer;color:green" onclick="load(2)" onmouseover="changeColor(this)" onmouseout="resetColor(this)">食品</a></li>
+      <li ><a style="cursor: pointer;color:green" onclick="load(3)" onmouseover="changeColor(this)" onmouseout="resetColor(this)">塑膠</a></li>
+      <li ><a style="cursor: pointer;color:green" onclick="load(4)" onmouseover="changeColor(this)" onmouseout="resetColor(this)">紡織</a></li>
+      <li ><a style="cursor: pointer;color:green" onclick="load(6)" onmouseover="changeColor(this)" onmouseout="resetColor(this)">電機</a></li>
+      <li ><a style="cursor: pointer;color:green" onclick="load(7)" onmouseover="changeColor(this)" onmouseout="resetColor(this)">電器電纜</a></li>
+      <li ><a style="cursor: pointer;color:green" onclick="load(37)" onmouseover="changeColor(this)" onmouseout="resetColor(this)">化學</a></li>
+      <li ><a style="cursor: pointer;color:green" onclick="load(38)" onmouseover="changeColor(this)" onmouseout="resetColor(this)">生技</a></li>
+      <li ><a style="cursor: pointer;color:green" onclick="load(40)" onmouseover="changeColor(this)" onmouseout="resetColor(this)">玻璃</a></li>
+      <li ><a style="cursor: pointer;color:green" onclick="load(10)" onmouseover="changeColor(this)" onmouseout="resetColor(this)">造紙</a></li>
+      <li ><a style="cursor: pointer;color:green" onclick="load(11)" onmouseover="changeColor(this)" onmouseout="resetColor(this)">鋼鐵</a></li>
+      <li ><a style="cursor: pointer;color:green" onclick="load(12)" onmouseover="changeColor(this)" onmouseout="resetColor(this)">橡膠</a></li>
+      <li ><a style="cursor: pointer;color:green" onclick="load(13)" onmouseover="changeColor(this)" onmouseout="resetColor(this)">汽車</a></li>
+      <li ><a style="cursor: pointer;color:green" onclick="load(40)" onmouseover="changeColor(this)" onmouseout="resetColor(this)">半導體</a></li>
+      <li ><a style="cursor: pointer;color:green" onclick="load(41)" onmouseover="changeColor(this)" onmouseout="resetColor(this)">電腦周邊</a></li>
+      <li ><a style="cursor: pointer;color:green" onclick="load(42)" onmouseover="changeColor(this)" onmouseout="resetColor(this)">光電</a></li>
+      <li ><a style="cursor: pointer;color:green" onclick="load(43)" onmouseover="changeColor(this)" onmouseout="resetColor(this)">通訊網路</a></li>
+      <li ><a style="cursor: pointer;color:green" onclick="load(44)" onmouseover="changeColor(this)" onmouseout="resetColor(this)">電子零組件</a></li>
+      <li ><a style="cursor: pointer;color:green" onclick="load(45)" onmouseover="changeColor(this)" onmouseout="resetColor(this)">電子通路</a></li>
+      <li ><a style="cursor: pointer;color:green" onclick="load(46)" onmouseover="changeColor(this)" onmouseout="resetColor(this)">資訊服務</a></li>
+      <li ><a style="cursor: pointer;color:green" onclick="load(47)" onmouseover="changeColor(this)" onmouseout="resetColor(this)">其他電子</a></li>
+      <li ><a style="cursor: pointer;color:green" onclick="load(19)" onmouseover="changeColor(this)" onmouseout="resetColor(this)">營建</a></li>
+      <li ><a style="cursor: pointer;color:green" onclick="load(20)" onmouseover="changeColor(this)" onmouseout="resetColor(this)">航運</a></li>
+      <li ><a style="cursor: pointer;color:green" onclick="load(21)" onmouseover="changeColor(this)" onmouseout="resetColor(this)">觀光餐旅</a></li>
+      <li ><a style="cursor: pointer;color:green" onclick="load(22)" onmouseover="changeColor(this)" onmouseout="resetColor(this)">金融業</a></li>
+      <li ><a style="cursor: pointer;color:green" onclick="load(24)" onmouseover="changeColor(this)" onmouseout="resetColor(this)">貿易百貨</a></li>
+      <li ><a style="cursor: pointer;color:green" onclick="load(39)" onmouseover="changeColor(this)" onmouseout="resetColor(this)">油電燃氣</a></li>
+      <li ><a style="cursor: pointer;color:green" onclick="load(95)" onmouseover="changeColor(this)" onmouseout="resetColor(this)">運動休閒</a></li>
+      <li ><a style="cursor: pointer;color:green" onclick="load(96)" onmouseover="changeColor(this)" onmouseout="resetColor(this)">居家生活</a></li>
+      <li ><a style="cursor: pointer;color:green" onclick="load(94)" onmouseover="changeColor(this)" onmouseout="resetColor(this)">數位雲端</a></li>
+      <li ><a style="cursor: pointer;color:green" onclick="load(93)" onmouseover="changeColor(this)" onmouseout="resetColor(this)">綠能環保</a></li>
+    </ul>
+    </div>
+      <!-- <script src="pystock1.js"></script> -->
+      <div id="space" style="flex: 3;min-width: 800px;"></div>
+  </div>
+  <div>
+    <input style="border-radius: 4px" type="search" id="searchInput" placeholder="輸入關鍵字">
+    <button id="searchButton" style="border-radius: 4px;">搜索</button>
+  </div>
+  </div>
+  </body>
+</html>
