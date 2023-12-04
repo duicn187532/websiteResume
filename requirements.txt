@@ -1,2 +1,7 @@
 Flask
+bs4
+pymongo
+bson
+re
+urllib.request
 gunicorn
