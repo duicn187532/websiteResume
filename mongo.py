@@ -36,6 +36,10 @@ def insertdata(uname,enum,pwd,sex,email,email2,bir,licenses):
 data=collection.find({},sort=[
     ('enum',pymongo.ASCENDING)
 ])
+dnta=collection.find_one({
+    'sex':'男'
+})
+print(dnta['uname'])
 # for i in data:
 #     print(i)
 # for i in data:

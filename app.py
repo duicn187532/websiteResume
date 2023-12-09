@@ -1,7 +1,7 @@
 from flask import Flask,render_template,render_template_string,flash,request,redirect,session
 # from flask import url_for,jsonify
 import moudule.Getjdata as Getjdata
-import mongo as mongo
+import mongo
 app= Flask(
     __name__,
     static_folder="stop", #靜態檔案資料夾的名稱
@@ -54,18 +54,48 @@ def login():
 def loginside():
     enum=request.form['enum']
     pwd=request.form['pwd']
-    session["username"]=enum
+    result=mongo.collection.find_one({
+        "$and":[
+            {"enum":enum},
+            {"pwd":pwd}
+        ]
+        })
     if enum=="admin" and pwd=="pass":
-       return redirect("/backendcontrol")
+      session["username"]=enum
+      return redirect("/backendcontrol")
+    elif result==None:
+        return redirect("/loginnok")
     else:
+        session["username"]=result['uname']
         return redirect("/loginok")
 
 @app.route("/backendcontrol")
 def control():
-    return render_template("systemcall.html")
+    if session["username"]=="admin":
+        return render_template("systemcall.html")
+    else:
+        return redirect("/")
+
+@app.route("/loginnok")
+def loginok():
+    html_content = """
+    <html>
+    <body>
+        <div style="text-align:center;color:blue;font-size:140%">登入失敗，即將返回...
+        <br>
+        </div>
+        <script>
+            setTimeout(function() {
+                window.location.href = '/login';
+            }, 2000); // 延迟时间为 1000 毫秒(1 秒)
+        </script>
+    </body>
+    </html>
+    """
+    return render_template_string(html_content)
 
 @app.route("/loginok")
-def loginok():
+def loginnok():
     username=session["username"]
     html_content = """
     <html>
@@ -83,6 +113,7 @@ def loginok():
     </html>
     """
     return render_template_string(html_content,username=username)
+
 @app.route("/signup")
 def signup():   
     return render_template("signup.html")
