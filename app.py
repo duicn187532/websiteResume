@@ -162,5 +162,9 @@ def jsondata():
     Sdata=Getjdata.run(batch,sect)
     return Sdata #將此檔案用getjs.js帶入到TAI1中
 
+@app.route("/learning")
+def learning():
+    return render_template("learning.html")
+
 if __name__=="__main__":
     app.run(use_reloader=False,debug=True)

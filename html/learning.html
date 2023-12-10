@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的學習工具</title>
+    <link rel=stylesheet href="{{url_for('static',filename='learn.css')}}">
+    <style>
+        body {
+            position: relative;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('stop/IMG_6806.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            z-index: -1;
+            transform: scaleX(-1);
+        }
+
+        table {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+        <tr>
+            <td>Name</td>
+            <td>From</td>
+            <td>Check</td>
+            <td>Img</td>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="learning_name">Python遊戲開發講座入門篇｜基礎知識與RPG遊戲</td>
+                <td class="learning_from bk"><a>書</a></td>
+                <td class="learning_check done"><a>100%</a></td>
+                <td class="learning_img"><img src="{{url_for('static',filename='books1.jpg')}}"></img></td>
+            </tr>
+            <tr>
+                <td class="learning_name">Python 入門教學課程</td>
+                <td class="learning_from yt"><a>youtube-彭彭的課程</a></td>
+                <td class="learning_check done"><a>100%</a></td>
+                <td class="learning_img"><img src="{{url_for('static',filename='pystart.jpg')}}"></img></td>
+            </tr>
+            <tr>
+                <td class="learning_name">【python】4天初學者Python教學</td>
+                <td class="learning_from yt"><a>youtube-GrandmaCan-<br>我阿嬤都會</a></td>
+                <td class="learning_check done"><a>100%</a></td>
+                <td class="learning_img"><img src="{{url_for('static',filename='grandmapy.jpg')}}"></img></td>
+            </tr>
+            <tr>
+                <td class="learning_name">HTML、CSS、JavaScript 網頁前端工程</td>
+                <td class="learning_from yt"><a>youtube</a></td>
+                <td class="learning_check done"><a>100%</a></td>
+                <td class="learning_img"><img src="{{url_for('static',filename='hcjstart.jpg')}}"></img></td>
+            </tr>
+            <tr>
+                <td class="learning_name">HTML/CSS/JavaScript與前端框架的完美結合：使用Bootstrap與PWA技術，新手從這開始！</td>
+                <td class="learning_from bk"><a>書</a></td>
+                <td class="learning_check"><a>66%(10/15章)</a></td>
+                <td class="learning_img"><img src="{{url_for('static',filename='books3.jpg')}}"></img></td>
+            </tr>
+            <tr>
+                <td class="learning_name">實戰Python Flask開發｜基礎知識x物件偵測x機器學習應用</td>
+                <td class="learning_from bk"><a>書</a></td>
+                <td class="learning_check"><a>5%(1/17章)</a></td>
+                <td class="learning_img"><img src="{{url_for('static',filename='books4.jpg')}}"></img></td>
+            </tr>
+            <tr>
+                <td class="learning_name">Python Flask、MongoDB 網站後端開發</td>
+                <td class="learning_from yt"><a>youtube</a></td>
+                <td class="learning_check done"><a>100%</a></td>
+                <td class="learning_img"><img src="{{url_for('static',filename='flaskstart.jpg')}}"></img></td>
+            </tr>
+            <tr>
+                <td class="learning_name">最新Python基礎必修課(含ITS Python國際認證模擬試題)</td>
+                <td class="learning_from bk"><a>書</a></td>
+                <td class="learning_check"><a>41%(5/12章)</a></td>
+                <td class="learning_img"><img src="{{url_for('static',filename='books6.jpg')}}"></img></td>
+            </tr>
+            <tr>
+                <td class="learning_name">【python】requests發送http請求 ｜ 模擬發文、爬取資訊</td>
+                <td class="learning_from yt"><a>youtube-GrandmaCan-<br>我阿嬤都會</a></td>
+                <td class="learning_check done"><a>100%</a></td>
+                <td class="learning_img"><img src="{{url_for('static',filename='grandmasc.jpg')}}"></img></td>
+            </tr>
+            <tr>
+                <td class="learning_name">快速學會Python架站技術：活用Django 4建構動態網站的16堂課</td>
+                <td class="learning_from bk"><a>書</a></td>
+                <td class="learning_check"><a>0%</a></td>
+                <td class="learning_img"><img src="{{url_for('static',filename='books2.jpg')}}"></img></td>
+            </tr>
+            <tr>
+                <td class="learning_name">手機應用程式設計超簡單：App Inventor 2零基礎入門班(中文介面第六版)(附APP實戰與打造ChatGPT聊天機器人影音)</td>
+                <td class="learning_from bk"><a>書</a></td>
+                <td class="learning_check"><a>0%</a></td>
+                <td class="learning_img"><img src="{{url_for('static',filename='books5.jpg')}}"></img></td>
+            </tr>
+        </tbody>
+    </table>
+    <button type="button" onclick="window.location.href='/'">返回上一頁</button>
+</body>
+</html>
