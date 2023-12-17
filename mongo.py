@@ -19,6 +19,9 @@ except Exception as e:
 
 db=client.員工#選擇操作test資料庫
 collection=db.users#選擇操作users集合
+def SearchOne(string):
+    target=collection.find_one({'enum':string})
+    return target['uname']
 def insertdata(uname,enum,pwd,sex,email,email2,bir,licenses):
     data={
             "uname": uname,
@@ -39,7 +42,10 @@ data=collection.find({},sort=[
 dnta=collection.find_one({
     'sex':'男'
 })
-print(dnta['uname'])
+dbcount=collection.count_documents({})
+list_data=list(data)
+# print(list_data)
+#print(dnta['uname'])
 # for i in data:
 #     print(i)
 # for i in data:

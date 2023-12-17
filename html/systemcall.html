@@ -4,8 +4,46 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>會員系統</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link href="{{url_for('static',filename='layui.css')}}" rel="stylesheet">
 </head>
 <body>
-  
+  <div class="row col-lg">
+    <h1>員工控制後台</h1>
+  </div>
+  <table class="layui-table" id="ID-table-demo-init">
+    <thead>
+      <tr>
+        <th lay-data="{field:'enum', width:80, sort: true}">員工編號</th>
+        <th lay-data="{field:'uname', width:80}">姓名</th>
+        <th lay-data="{field:'sex', width:80, sort: true}">性别</th>
+        <th lay-data="{field:'email'}">電郵</th>
+        <th lay-data="{field:'bir',}">生日</th>
+        <th lay-data="{field:'licenses'}">證照</th>
+        <th lay-data="{field:'licenses'}">選項</th>
+      </tr>
+      {% for jjdata in jdata %} 
+      <tr>
+        <td>{{ jjdata['enum'] }}</td>
+        <td>{{ jjdata['uname'] }}</td>
+        <td>{{ jjdata['sex'] }}</td>
+        <td>{{ jjdata['email'] }}</td>
+        <td>{{ jjdata['bir'] }}</td>
+        <td>{{ jjdata['licenses'] }}</td>
+        <td>
+          <a href="/modify/{{ jjdata['enum'] }}">修改</a>
+          <a href="/erase/{{ jjdata['enum'] }}" onclick="return confirmDelete();"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+          </svg></a>
+        </td>
+      </tr>
+      {% endfor %}
+    </thead>
+  </table>
+  <button type="button" onclick="window.location.href='login'">回登入頁</button>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <script>function confirmDelete() {
+    return confirm('確定要刪除嗎？');
+}</script>
 </body>
 </html>

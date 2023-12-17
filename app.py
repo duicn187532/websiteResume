@@ -35,19 +35,9 @@ def getData():
     else:
         return "你好"
 
-@app.route("/getSun")
-def getSun():
-    maxnum=request.args.get("max",100)
-    maxnum=int(maxnum)
-    minnum=request.args.get("min",1)
-    minnum=int(minnum)
-    result=0
-    for i in range(minnum,maxnum+1):
-        result+=i
-    return "總和"+str(result)
-
 @app.route("/login")
 def login():   
+    session.clear()
     return render_template("login.html")
 
 @app.route("/loginin",methods=['POST'])
@@ -71,10 +61,48 @@ def loginside():
 
 @app.route("/backendcontrol")
 def control():
-    if session["username"]=="admin":
-        return render_template("systemcall.html")
+    username=session.get("username")
+    if username=="admin":
+        jdata=list(mongo.collection.find({},sort=[
+    ('enum',mongo.pymongo.ASCENDING)
+]))
+        return render_template("systemcall.html",jdata=jdata)
     else:
         return redirect("/")
+
+@app.route("/erase/<enum>")
+def erase(enum):
+    username=session.get("username")
+    if username=="admin":
+        mongo.collection.delete_one({"enum":enum})
+        return redirect("/backendcontrol")
+    else:
+        return redirect("/")
+
+@app.route("/modify/<enum>",methods=['get'])
+def modify(enum):
+    username=session.get("username")
+    if username=="admin":
+        jdata=mongo.collection.find_one({'enum':enum})
+        if jdata:
+            return render_template("modify.html",jdata=jdata)
+        else:
+            return 404
+    else:
+        return redirect("/")
+    
+@app.route("/update/<enum>",methods=['POST'])
+def update(enum):
+    username=session.get("username")
+    if username=="admin":
+        mongo.collection.update_one({'enum':enum},{"$set":{
+        'uname':request.form.get("uname"),
+        'enum':request.form.get("enum"),
+        'email':request.form.get("email"),
+        'email2':request.form.get("email2"),
+        'bir':request.form.get("bir")}})
+        return redirect("/backendcontrol")
+    else:redirect("/")
 
 @app.route("/loginnok")
 def loginok():

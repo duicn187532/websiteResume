@@ -10,7 +10,7 @@ function getData(xy,sect){
             let ans=document.querySelector("#an");
             for (let i=0;i<data.data.list.length;i++){
             let result=data.data.list[i];
-            ans.innerHTML+="<div class='price' style=''><span>"+result.symbol+"</span>"+"<span>"+result.symbolName+"</span>"+"<span>"+result.price+"</span>"+"<span>"+result.change+"</span>"+"<span>"+result.regularMarketPreviousClose+"</span>"+"</div>";
+            ans.innerHTML+="<div class='price' style=''><span>"+result.symbol+"</span>"+"<span>"+result.symbolName+"</span>"+"<span>"+result.price.raw+"</span>"+"<span>"+result.change.raw+"</span>"+"<span>"+result.regularMarketPreviousClose.raw+"</span>"+"</div>";
             resolve();
             }})
             })}
